@@ -10,6 +10,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script>
     tailwind.config = {
       theme: {
@@ -63,16 +64,7 @@
         </section>
 
         <section id="category-details" class="mt-5">
-            <!-- <div id="category-details" class="card lg:card-side bg-base-100 shadow-xl">
-                <figure><img src="https://placeimg.com/400/400/arch" alt="Album"></figure>
-                <div class="card-body">
-                  <h2 class="card-title">New album is released!</h2>
-                  <p>Click the button to listen on Spotiwhy app.</p>
-                  <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Listen</button>
-                  </div>
-                </div>
-              </div> -->
+            
         </section>
         <section id="loader" class="d-none">
             <div style="height:400px;" class="d-flex justify-content-center align-items-center">
@@ -81,8 +73,21 @@
                 </div>
               </div>
         </section>
-    </main>
 
+        <section>
+            <!-- <label for="my-modal" class="btn modal-button">open modal</label> -->
+
+
+            <input type="checkbox" id="my-modal" class="modal-toggle" />
+            <div  class="modal">
+            <div id="details-modal" class="modal-box">
+                
+            </div>
+            
+            </div>
+        </section>
+    </main>
+    
 
 
     <script src="js/script.js"></script>

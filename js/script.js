@@ -25,16 +25,10 @@ const displayCategories = newsCategories =>{
         <li onclick="categoryDetails('${newsCategory.category_id}')" id="${newsCategory.category_id}"><a>${newsCategory.category_name}</a></li>`;
         newsCategoriesList.appendChild(newsCategoryName);
     })
-
-    //  for(const newsCategory of newsCategories){        
-    //     const newsCategoryName = document.createElement('div');
-    //     newsCategoryName.classList.add('category');
-    //     newsCategoryName.innerHTML = `
-    //     <li onclick="categoryDetails('${newsCategory.category_id}')" id="${newsCategory.category_id}"><a>${newsCategory.category_name}</a></li>`;
-    //     newsCategoriesList.appendChild(newsCategoryName);
-    //  }
      
 }
+
+let categoryGlobal = '';
 
 const categoryDetails = category_id => {
     toggleLoader(true);
@@ -42,17 +36,49 @@ const categoryDetails = category_id => {
     fetch(`https://openapi.programming-hero.com/api/news/category/${category_id}`)
     .then(response => response.json())
     .then(data => displayCategoryDetails(data.data))
+
+    
 }
+
+
+
+// function getStars(rating) {
+
+//   // Round to nearest half
+//   rating = Math.round(rating * 2) / 2;
+//   let output = [];
+
+//   // Append all the filled whole stars
+//   for (var i = rating; i >= 1; i--)
+//     output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+//   // If there is a half a star, append it
+//   if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+//   // Fill the empty stars
+//   for (let i = (5 - rating); i >= 1; i--)
+//     output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+//   return output.join('');
+
+// }
 
 const displayCategoryDetails = categoryDetails =>{
     //console.log(categoryDetails[0].author)
+
+    
+    
+
+    categoryGlobal= categoryDetails;
+    console.log(categoryGlobal);
+
      const newsCategoriesDetails =document.getElementById('category-details');
      
      newsCategoriesDetails.innerHTML ='';
      categoryDetails.forEach(newsDetails =>{
-        console.log(newsDetails);
-       
-        
+        //console.log(newsDetails);
+         
+         
        const newsDetailsDiv = document.createElement('div');
        newsDetailsDiv.classList.add("card");
        newsDetailsDiv.classList.add("mt-3");
@@ -73,8 +99,10 @@ const displayCategoryDetails = categoryDetails =>{
         
                 <h3>${newsDetails.author.name}</br><p>${newsDetails.author.published_date}</p></h3>
                 <h3>${newsDetails.total_view}</h3>
-                <button class="btn btn-primary">Details</button> 
-            </div>
+                <span class="fa fa-star" id="stars"></span>
+                <button onclick="modalDetails('${newsDetails._id}')" style="margin-left:100px" for="my-modal" class="btn modal-button btn-sm btn-primary">Details</button> 
+                
+                </div>
        
        </div>
        </div>
@@ -85,7 +113,29 @@ const displayCategoryDetails = categoryDetails =>{
        
      })
      toggleLoader(false);
+     
 }
+
+const modalDetails = Id => {
+    const madalDetails =document.getElementById('details-modal');
+    madalDetails.innerHTML ='';
+    document.getElementById('my-modal').checked = true;
+     const modalData = categoryGlobal.filter(x=>x._id=== Id);
+     const modalDetailsDiv = document.createElement('div');
+     modalDetailsDiv.innerHTML =`
+     <h1>${modalData[0].title}</h1>
+     <p>Author Name: ${modalData[0].author.name}</p>
+     <p>Total View: ${modalData[0].total_view}</p>
+     <div class="modal-action">
+         <label for="my-modal" class="btn">close</label>
+     </div>`;
+
+     madalDetails.appendChild(modalDetailsDiv);
+    
+
+    
+    
+};
 
 const toggleLoader = isLoading => {
     const loaderSection = document.getElementById('loader');
