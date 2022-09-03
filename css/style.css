@@ -2,7 +2,23 @@
     background-color: beige;
     list-style-type: none;
     position: relative;
-    padding-left: 50px;
+    padding-left: 40px;
     margin-left: 20px;
+   
 
+}
+
+.newsDetails{
+    height: 100%;
+    width: 900px; 
+    
+}
+
+.card-title {
+    align-items: center;
+    gap: .5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    /* display: flex; */
 }
