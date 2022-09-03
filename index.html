@@ -33,10 +33,11 @@
                   
                 </div>
                 <div class="flex-none">
-                    <ul class="menu menu-horizontal p-0">
-                        <li><a>Home</a></li>
+                    <ul class="menu menu-horizontal p-0 gap-x-4">
+                        <label for="my-modals" class="btn modal-button">News</label>
                        
-                        <li><a>Blog</a></li>
+                        <label for="my-modals" class="btn modal-button">Blog</label>
+                        
                       </ul>
                   <div class="">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -49,8 +50,26 @@
               </div>
         </section>
 
-        
-
+        <section>
+            <input type="checkbox" id="my-modals" class="modal-toggle" />
+            <div class="modal">
+            <div class="modal-box">
+                <h3 class="font-bold text-lg">Some Interview Question and Answer</h3>
+                <h6 class="font-bold">Question No-1: Diference between var, let and const</h6>
+                <p class="py-4 bg-base-300">Ans:1. The scope of a var variable is functional scope. <br> whereas, The scope of a var variable is functional scope. <br>The scope of a const variable is block scope.
+                2.It can be updated and re-declared into the scope. <br> whereas, It can be updated but cannot be re-declared into the scope.<br>It cannot be updated or re-declared into the scope.</p>
+                <h6 class="font-bold">Question No-2: Difference between Arrow function and regular function.</h6>
+                <p class="bg-base-300">Ans:1. In regular JavaScript functions, arguments keywords can be used to access the passed arguments when the function is invoked. whereas, But, arrow functions do not have their own arguments and it uses the arguments from the outer function.
+                    2. In regular function, this changes according to the way that function is invoked. whereas,Arrow functions don't have their own “this”, and they don’t redefine the value of “this ”within the function.
+                </p>
+                <h6 class="font-bold">Question No-3: why we use template string?</h6>
+                <p class="bg-base-300">Ans: Template strings are a powerful feature of modern JavaScript released in ES6. It lets us insert/interpolate variables and expressions into strings without needing to concatenate like in older versions of JavaScript. It allows us to create strings that are complex and contain dynamic elements. Another great thing that comes with template strings are tags. Tags are functions that take a string and the decomposed parts of the string as parameters and are great for converting strings to different entities.</p>
+                <div class="modal-action">
+                <label for="my-modals" class="btn btn-primary">close</label>
+                </div>
+            </div>
+            </div>
+        </section>
     </header>
     
     <main>
@@ -75,9 +94,7 @@
         </section>
 
         <section>
-            <!-- <label for="my-modal" class="btn modal-button">open modal</label> -->
-
-
+            
             <input type="checkbox" id="my-modal" class="modal-toggle" />
             <div  class="modal">
             <div id="details-modal" class="modal-box">

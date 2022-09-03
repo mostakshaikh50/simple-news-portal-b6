@@ -1,11 +1,4 @@
-// function fetchData(){
-//     fetch('https://openapi.programming-hero.com/api/news/categories')
-//     .then(response =>{
-//         console.log(response);
-//     });
-// }
 
-// fetchData();
 
 const loadCategories = () =>{
     toggleLoader();
@@ -41,34 +34,8 @@ const categoryDetails = category_id => {
 }
 
 
-
-// function getStars(rating) {
-
-//   // Round to nearest half
-//   rating = Math.round(rating * 2) / 2;
-//   let output = [];
-
-//   // Append all the filled whole stars
-//   for (var i = rating; i >= 1; i--)
-//     output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-
-//   // If there is a half a star, append it
-//   if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-
-//   // Fill the empty stars
-//   for (let i = (5 - rating); i >= 1; i--)
-//     output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-
-//   return output.join('');
-
-// }
-
 const displayCategoryDetails = categoryDetails =>{
-    //console.log(categoryDetails[0].author)
-
-    
-    
-
+   
     categoryGlobal= categoryDetails;
     console.log(categoryGlobal);
 
@@ -99,7 +66,7 @@ const displayCategoryDetails = categoryDetails =>{
         
                 <h3>${newsDetails.author.name}</br><p>${newsDetails.author.published_date}</p></h3>
                 <h3>${newsDetails.total_view}</h3>
-                <span class="fa fa-star" id="stars"></span>
+                
                 <button onclick="modalDetails('${newsDetails._id}')" style="margin-left:100px" for="my-modal" class="btn modal-button btn-sm btn-primary">Details</button> 
                 
                 </div>
@@ -123,7 +90,7 @@ const modalDetails = Id => {
      const modalData = categoryGlobal.filter(x=>x._id=== Id);
      const modalDetailsDiv = document.createElement('div');
      modalDetailsDiv.innerHTML =`
-     <h1>${modalData[0].title}</h1>
+     <h3 class="font-bold text-lg">${modalData[0].title}</h3>
      <p>Author Name: ${modalData[0].author.name}</p>
      <p>Total View: ${modalData[0].total_view}</p>
      <div class="modal-action">
