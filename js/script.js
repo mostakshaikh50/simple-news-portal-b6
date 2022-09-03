@@ -8,6 +8,7 @@
 // fetchData();
 
 const loadCategories = () =>{
+    toggleLoader();
     fetch('https://openapi.programming-hero.com/api/news/categories')
     .then(response => response.json())
     .then(data => displayCategories(data.data.news_category))
@@ -36,6 +37,7 @@ const displayCategories = newsCategories =>{
 }
 
 const categoryDetails = category_id => {
+    toggleLoader(true);
     console.log(category_id);
     fetch(`https://openapi.programming-hero.com/api/news/category/${category_id}`)
     .then(response => response.json())
@@ -61,14 +63,25 @@ const displayCategoryDetails = categoryDetails =>{
           <h2 class="card-title">${newsDetails.title}</h2>
           <p>${newsDetails.details}</p>
           <div class="card-actions justify-end">
-            <button class="btn btn-primary">Listen</button>
+            <button class="btn btn-primary">Details</button>
           </div>
         </div>`;
 
         newsCategoriesDetails.appendChild(newsDetailsDiv);
        
      })
-     
+     toggleLoader(false);
+}
+
+const toggleLoader = isLoading => {
+    const loaderSection = document.getElementById('loader');
+    if(isLoading){
+       
+        loaderSection.classList.remove('d-none');
+    }
+    else{
+        loaderSection.classList.add('d-none');
+    }
 }
 
 
