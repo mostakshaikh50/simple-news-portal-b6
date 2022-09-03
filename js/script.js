@@ -45,29 +45,43 @@ const categoryDetails = category_id => {
 }
 
 const displayCategoryDetails = categoryDetails =>{
-    console.log(categoryDetails)
+    //console.log(categoryDetails[0].author)
      const newsCategoriesDetails =document.getElementById('category-details');
+     
      newsCategoriesDetails.innerHTML ='';
      categoryDetails.forEach(newsDetails =>{
-        const newsDetailsDiv = document.createElement('div');
-        newsDetailsDiv.classList.add('newsDetails');
-        newsDetailsDiv.classList.add('card-body');
-        newsDetailsDiv.classList.add('card-title');
-        newsDetailsDiv.classList.add('card-actions');
-        newsDetailsDiv.classList.add('justify-end');
-       // newsDetailsDiv.classList.add('btn btn-primary');
+        console.log(newsDetails);
+       
         
-        newsDetailsDiv.innerHTML = `
-        <img src="${newsDetails.thumbnail_url}" alt="Album">
-        <div class="card-body">
-          <h2 class="card-title">${newsDetails.title}</h2>
-          <p>${newsDetails.details}</p>
-          <div class="card-actions justify-end">
-            <button class="btn btn-primary">Details</button>
-          </div>
-        </div>`;
+       const newsDetailsDiv = document.createElement('div');
+       newsDetailsDiv.classList.add("card");
+       newsDetailsDiv.classList.add("mt-3");
+       newsDetailsDiv.innerHTML =`
+       <div class="row g-0">
+       <div class="col-md-4">
+            <img class="img-fluid h-80 p-4 rounded-5" src="${newsDetails.thumbnail_url}" alt="thumbnail">
+       </div>
+       <div class="col-md-8">
+            <div class="card-body">
+              <h2 class="card-title">${newsDetails.title}</h2>
+              <p>${newsDetails.details}</p>
+            </div>
+            <div class="flex ml-5 p-4 gap-5">
+                <div class="w-10 rounded-full">
+                <img src="${newsDetails.author.img}" />                
+                </div>
+        
+                <h3>${newsDetails.author.name}</br><p>${newsDetails.author.published_date}</p></h3>
+                <h3>${newsDetails.total_view}</h3>
+                <button class="btn btn-primary">Details</button> 
+            </div>
+       
+       </div>
+       </div>
+       `;
+       
 
-        newsCategoriesDetails.appendChild(newsDetailsDiv);
+     newsCategoriesDetails.appendChild(newsDetailsDiv);
        
      })
      toggleLoader(false);
