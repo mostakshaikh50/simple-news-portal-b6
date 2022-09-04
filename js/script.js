@@ -31,8 +31,10 @@ const categoryDetails = category_id => {
     fetch(`https://openapi.programming-hero.com/api/news/category/${category_id}`)
     .then(response => response.json())
     .then(data => displayCategoryDetails(data.data))
-
     
+    const itemCount =document.getElementById('item-count');
+    const  itenCountDiv = document.createElement('div');
+    itenCountDiv.innerHTML =``
 }
 
 
@@ -77,7 +79,7 @@ const displayCategoryDetails = categoryDetails =>{
            <div class="col-md-8">
                 <div class="card-body">
                   <h2 class="card-title">${newsDetails.title ? newsDetails.title: "No Title Found"}</h2>
-                  <p>${newsDetails.details ? newsDetails.details : "No details available" }</p>
+                  <p>${newsDetails.details.slice(0, 300) }.....</p>
                 </div>
                 <div class="flex ml-5 p-4 gap-5">
                     <div class="w-10 rounded-full">
