@@ -3,8 +3,17 @@
 const loadCategories = () =>{
     toggleLoader();
     fetch('https://openapi.programming-hero.com/api/news/categories')
-    .then(response => response.json())
-    .then(data => displayCategories(data.data.news_category))
+    .then(response =>{
+        if(!response.ok){
+            throw Error("ERROR");
+        }
+       return response.json();
+    })
+    .then(data =>{
+        displayCategories(data.data.news_category)
+    }).catch(error =>{
+        console.log(error)
+    });
 }
 
 const displayCategories = newsCategories =>{
@@ -32,16 +41,17 @@ const categoryDetails = category_id => {
     .then(response => response.json())
     .then(data => displayCategoryDetails(data.data))
     
-    const itemCount =document.getElementById('item-count');
-    const  itenCountDiv = document.createElement('div');
-    itenCountDiv.innerHTML =``
 }
+
+
+
+
 
 
 const displayCategoryDetails = categoryDetails =>{
    
     categoryGlobal= categoryDetails;
-    console.log(categoryGlobal);
+    //console.log(categoryGlobal);
 
      const newsCategoriesDetails =document.getElementById('category-details');
      
@@ -63,7 +73,10 @@ const displayCategoryDetails = categoryDetails =>{
         toggleLoader(false);
     }
     else{
+       
         categoryDetails.forEach(newsDetails =>{
+
+            
             
            const newsDetailsDiv = document.createElement('div');
            newsDetailsDiv.classList.add("card");
